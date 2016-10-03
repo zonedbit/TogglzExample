@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<bean id="internalServiceOldImpl" class="com.example.featureproxy.refactoring.InternalServiceOldImpl" />
+<bean id="internalServiceNewImpl" class="com.example.featureproxy.refactoring.InternalServiceNewImpl" />
+
+<bean id="togglzFeatureProxy" class="org.togglz.spring.proxy.FeatureProxyFactoryBean">
+  <property name="feature" value="FEATURE_TOGGLZ_PROXY" />
+  <property name="active" ref="internalServiceNewImpl" />
+  <property name="inactive" ref="internalServiceOldImpl" />
+</bean>
+
+</beans>
